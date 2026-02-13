@@ -1,0 +1,69 @@
+﻿@model PostViewModel
+@{
+    ViewData["Title"] = "Create Post";
+}
+<style>
+    .content-wrapper{
+        padding: 20px;
+        max-width:1000px;
+        margin :0 auto;
+        font-family: sans-serif;
+
+    }
+</style>
+<div class="content-wrapper">
+    <div class=" row">
+      <div class="col-6">
+        <h2>@ViewData["Title"]</h2>
+      </div>
+      <div class="col-6 text-end">
+        <a class="btn btn-primary" asp-action="Index" asp-controller="Post">Back to List</a>
+      </div>
+    </div>
+    <hr />
+    
+    <form asp-action="Create" asp-controller="Post" method="post" enctype="multipart/form-data">
+        <div class="validation-summary">
+            <span asp-validation-summary="all" class="text-danger"></span>
+        </div>
+         <div class="form-group">
+            <label asp-for="Post.Title"></label>
+            <input asp-for="Post.Title" class="form-control" />
+            <span asp-validation-for="Post.Title" class="text-danger"></span>
+
+         </div>
+        <div class="form-group">
+            <label asp-for="Post.CategoryId"></label>
+            <select asp-for="Post.CategoryId" asp-items="Model.Categories" class="form-control">
+                <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="Post.CategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Post.Author"></label>
+            <input asp-for="Post.Author"  class="form-control" />
+            <span asp-validation-for="Post.Author" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Post.Content"></label>
+            <textarea asp-for="Post.Content" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Post.Content" class="text-danger"></span>
+        </div>
+        <div class=" form-group">
+            <label asp-for="Post.FutureImageURL">Upload Image</label>
+            <input asp-for="FutureImage" type="file" class="form-control" />
+
+        </div>
+        <button class="btn btn-primary mt1" type="submit"> Button</button> 
+        <a class="btn btn-outline-secondary mt-1 " asp-action="Index" asp-controller="Post"> Back to list</a>
+    </form>
+    
+</div>
+@section Scripts {
+    <script src="https://cdn.tiny.cloud/1/yocli8nepdo5a85o2httfn8lpt34lwyj607xtnwqxgc8p6us/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+ <script>
+        tinymce.init({
+            selector: 'textarea'
+                });
+    </script>--
+}
